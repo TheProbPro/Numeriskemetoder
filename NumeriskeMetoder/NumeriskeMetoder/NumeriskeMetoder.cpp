@@ -1,20 +1,15 @@
 
 //Lektion 1 opgave:
+/*
 #include <iostream>
 //Lection 1 Includes:
-//#include "C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\nr3.h"
-//#include "C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\ludcmp.h"
-//#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\utilities.h>
-//#include "../../NR_C301/code/nr3.h"
-//#include "../../NR_C301/code/ludcmp.h"
-//#include "../../NR_C301/code/utilities.h"
 #include "LUDecomp.h"
 
 int main()
 {
 // Exercise 1:
 	// Solve A x = b using LU decomposition, and print the result.
-
+	//kan evt. lave en int variable size og sætte den til størrelsen af matrixen og vectoren.
 	MatDoub A(3,3);
 	A[0][0] = 1.0;	A[0][1] = 2.0;	A[0][2] = 3.0;
 	A[1][0] = 2.0;	A[1][1] = -4.0;	A[1][2] = 6.0;
@@ -25,41 +20,20 @@ int main()
 	b[1] = 18.0;
 	b[2] = 6.0;
 
-	LUDecomp::LUDecomp(A, b);
-
-	// evaluate x
-	/*VecDoub x(3);
-	LUdcmp LU(A);
-
-	auto L = LU.lu;
-	L[0][1] = L[0][2] = L[1][2] = 0;
-	L[0][0] = L[1][1] = L[2][2] = 1;
-	util::print(L, "L");
-
-	auto U = LU.lu;
-	U[1][0] = U[2][0] = U[2][1] = 0;
-	util::print(U, "U");
-
-	LU.solve(b,x);
-
-	// print x
-	util::print(A,"A");
-	util::print(L*U,"L*U");
-	util::print(L*U*x,"L*U*x");
-	util::print(x,"x");*/
-}
+	LUDecomp::LUDecomp(A, b, 3);
+}*/
 
 
-/*
+
 //Lektion 2 opgave:
 #include <iostream>
 #include <fstream>
-#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\nr3.h>
-#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\ludcmp.h>
-#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\cholesky.h>
-#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\utilities.h>
+#include "../../NR_C301/code/nr3.h"
+#include "../../NR_C301/code/ludcmp.h"
+# include "../../NR_C301/code/cholesky.h"
+#include "../../NR_C301/code/utilities.h"
 //Include til lektion 3 opgave
-#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\svd.h>
+#include "../../NR_C301/code/svd.h"
 
 using namespace std;
 
@@ -181,8 +155,6 @@ int main() {
 
 	return 0;
 }
-
-*/
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu

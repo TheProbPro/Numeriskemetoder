@@ -1,21 +1,46 @@
 #ifndef LUDECOMP_H
 #define LUDECOMP_H
+
+//Includes
 #include "../../NR_C301/code/nr3.h"
 #include "../../NR_C301/code/ludcmp.h"
 #include "../../NR_C301/code/utilities.h"
+
 namespace LUDecomp {
-	void LUDecomp(MatDoub& A, VecDoub& b) {
+	void LUDecomp(MatDoub& A, VecDoub& b, int size) {
 		// Evaluate x
 		VecDoub x(3);
+		//Create LU decomposition object
 		LUdcmp LU(A);
 
+		//Create LU matrix and print
 		auto L = LU.lu;
-		L[0][1] = L[0][2] = L[1][2] = 0;
-		L[0][0] = L[1][1] = L[2][2] = 1;
+		for (int i = 0; i < size-1; ++i) {
+			for (int j = 1; j < size; ++j) {
+				if (i == j) {
+					;
+				}
+				else {
+					L[i][j] = 0;
+				}
+			}
+		}
+		for (int i = 0; i < size; ++i) {
+			L[i][i] = 1;
+		}
 		util::print(L, "L");
 
 		auto U = LU.lu;
-		U[1][0] = U[2][0] = U[2][1] = 0;
+		for (int i = 1; i < size; ++i) {
+			for (int j = 0; j < size-1; ++j) {
+				if (i == j) {
+					;
+				}
+				else {
+					U[i][j] = 0;
+				}
+			}
+		}
 		util::print(U, "U");
 
 		LU.solve(b, x);

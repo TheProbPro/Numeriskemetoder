@@ -1,6 +1,4 @@
 ﻿  NumeriskeMetoder.cpp
-C:\Users\nvigg\Desktop\Github\Numeriskemetoder\NR_C301\code\utilities.h(47,14): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\nvigg\Desktop\Github\Numeriskemetoder\NR_C301\code\utilities.h(47,12): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\nvigg\Desktop\Github\Numeriskemetoder\NumeriskeMetoder\NumeriskeMetoder\LUDecomp.h(15,30): error C3867: 'NRmatrix<Doub>::ncols': non-standard syntax; use '&' to create a pointer to member
-C:\Users\nvigg\Desktop\Github\Numeriskemetoder\NumeriskeMetoder\NumeriskeMetoder\LUDecomp.h(15,30): error C2446: '<': no conversion from 'int (__thiscall NRmatrix<Doub>::* )(void) const' to 'int'
-C:\Users\nvigg\Desktop\Github\Numeriskemetoder\NumeriskeMetoder\NumeriskeMetoder\LUDecomp.h(15,25): message : There is no context in which this conversion is possible
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NR_C301\code\utilities.h(47,14): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NR_C301\code\utilities.h(47,12): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  NumeriskeMetoder.vcxproj -> C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumeriskeMetoder\Debug\NumeriskeMetoder.exe
