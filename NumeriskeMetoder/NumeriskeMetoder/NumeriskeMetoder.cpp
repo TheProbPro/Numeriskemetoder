@@ -1,10 +1,14 @@
-/*
+
 //Lektion 1 opgave:
 #include <iostream>
 //Lection 1 Includes:
-#include "C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\nr3.h"
-#include "C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\ludcmp.h"
-#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\utilities.h>
+//#include "C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\nr3.h"
+//#include "C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\ludcmp.h"
+//#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\utilities.h>
+#include "../../NR_C301/code/nr3.h"
+#include "../../NR_C301/code/ludcmp.h"
+#include "../../NR_C301/code/utilities.h"
+
 
 int main()
 {
@@ -29,21 +33,21 @@ int main()
 	auto L = LU.lu;
 	L[0][1] = L[0][2] = L[1][2] = 0;
 	L[0][0] = L[1][1] = L[2][2] = 1;
-	print(L, "L");
+	util::print(L, "L");
 
 	auto U = LU.lu;
 	U[1][0] = U[2][0] = U[2][1] = 0;
-	print(U, "U");
+	util::print(U, "U");
 
 	LU.solve(b,x);
 
 	// print x
-	print(A,"A");
-	print(L*U,"L*U");
-	print(L*U*x,"L*U*x");
-	print(x,"x");
+	util::print(A,"A");
+	util::print(L*U,"L*U");
+	util::print(L*U*x,"L*U*x");
+	util::print(x,"x");
 }
-*/
+
 
 /*
 //Lektion 2 opgave:
@@ -702,6 +706,7 @@ int main() {
 */
 
 //Lektion 12
+/*
 #include <iostream>
 #include <cmath>
 #include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\nr3.h> 
@@ -769,4 +774,4 @@ int main() {
 
 
 	return 0;
-}
+}*/

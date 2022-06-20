@@ -1,17 +1,4 @@
 ﻿  NumeriskeMetoder.cpp
-C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\utilities.h(47,14): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\utilities.h(47,12): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\nvigg\source\repos\NumeriskeMetoder\NumeriskeMetoder\NumeriskeMetoder.cpp(725,14): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\nvigg\source\repos\NumeriskeMetoder\NumeriskeMetoder\NumeriskeMetoder.cpp(726,14): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\nvigg\source\repos\NumeriskeMetoder\NumeriskeMetoder\NumeriskeMetoder.cpp(727,14): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\nvigg\source\repos\NumeriskeMetoder\NumeriskeMetoder\NumeriskeMetoder.cpp(732,7): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\nvigg\source\repos\NumeriskeMetoder\NumeriskeMetoder\NumeriskeMetoder.cpp(732,44): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\nvigg\source\repos\NumeriskeMetoder\NumeriskeMetoder\NumeriskeMetoder.cpp(732,67): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\nvigg\source\repos\NumeriskeMetoder\NumeriskeMetoder\NumeriskeMetoder.cpp(732,78): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\nvigg\source\repos\NumeriskeMetoder\NumeriskeMetoder\NumeriskeMetoder.cpp(733,7): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\nvigg\source\repos\NumeriskeMetoder\NumeriskeMetoder\NumeriskeMetoder.cpp(733,44): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\nvigg\source\repos\NumeriskeMetoder\NumeriskeMetoder\NumeriskeMetoder.cpp(733,67): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\nvigg\source\repos\NumeriskeMetoder\NumeriskeMetoder\NumeriskeMetoder.cpp(733,78): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\Users\nvigg\source\repos\NumeriskeMetoder\NumeriskeMetoder\NumeriskeMetoder.cpp(755,13): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\nvigg\source\repos\NumeriskeMetoder\NumeriskeMetoder\NumeriskeMetoder.cpp(756,13): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  NumeriskeMetoder.vcxproj -> C:\Users\nvigg\source\repos\NumeriskeMetoder\Debug\NumeriskeMetoder.exe
+C:\Users\nvigg\Desktop\Github\Numeriskemetoder\NR_C301\code\utilities.h(47,14): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\nvigg\Desktop\Github\Numeriskemetoder\NR_C301\code\utilities.h(47,12): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  NumeriskeMetoder.vcxproj -> C:\Users\nvigg\Desktop\Github\Numeriskemetoder\NumeriskeMetoder\Debug\NumeriskeMetoder.exe
