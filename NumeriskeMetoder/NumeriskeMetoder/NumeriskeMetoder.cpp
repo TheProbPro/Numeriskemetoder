@@ -5,10 +5,10 @@
 //#include "C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\nr3.h"
 //#include "C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\ludcmp.h"
 //#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\utilities.h>
-#include "../../NR_C301/code/nr3.h"
-#include "../../NR_C301/code/ludcmp.h"
-#include "../../NR_C301/code/utilities.h"
-
+//#include "../../NR_C301/code/nr3.h"
+//#include "../../NR_C301/code/ludcmp.h"
+//#include "../../NR_C301/code/utilities.h"
+#include "LUDecomp.h"
 
 int main()
 {
@@ -25,9 +25,10 @@ int main()
 	b[1] = 18.0;
 	b[2] = 6.0;
 
+	LUDecomp::LUDecomp(A, b);
 
 	// evaluate x
-	VecDoub x(3);
+	/*VecDoub x(3);
 	LUdcmp LU(A);
 
 	auto L = LU.lu;
@@ -45,7 +46,7 @@ int main()
 	util::print(A,"A");
 	util::print(L*U,"L*U");
 	util::print(L*U*x,"L*U*x");
-	util::print(x,"x");
+	util::print(x,"x");*/
 }
 
 
