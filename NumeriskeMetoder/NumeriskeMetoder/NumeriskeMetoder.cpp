@@ -39,7 +39,7 @@ using namespace std;
 
 int main() {
 	VecDoub xFilip(82); VecDoub yFilip(82);
-	ifstream Filip("C:\\Users\\nvigg\\Desktop\\4.semester Boeger\\4.Sem Real\\NumeriskeMetoder\\Programmeringsopgaver\\FilipData.dat");
+	ifstream Filip("C:\\Users\\nvigg\\Documents\\GitHub\\Numeriskemetoder\\Data\\FilipData.dat");
 	for (int i = 0; i < 82; i++) {
 		Filip >> yFilip[i];
 		Filip >> xFilip[i];
@@ -47,7 +47,7 @@ int main() {
 	std::cout << "Filip loaded" << std::endl;
 	
 	VecDoub xPont(40); VecDoub yPont(40);
-	ifstream Pont("C:\\Users\\nvigg\\Desktop\\4.semester Boeger\\4.Sem Real\\NumeriskeMetoder\\Programmeringsopgaver\\PontiusData.dat");
+	ifstream Pont("C:\\Users\\nvigg\\Documents\\GitHub\\Numeriskemetoder\\Data\\PontiusData.dat");
 	for (int i = 0; i < 40; i++) {
 		Pont >> yPont[i];
 		Pont >> xPont[i];
