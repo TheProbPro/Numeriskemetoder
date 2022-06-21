@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CholeskyDecomp.h" />
+    <ClInclude Include="ConvergenceMethods.h" />
     <ClInclude Include="LUDecomp.h" />
     <ClInclude Include="SVDDecomp.h" />
   </ItemGroup>
