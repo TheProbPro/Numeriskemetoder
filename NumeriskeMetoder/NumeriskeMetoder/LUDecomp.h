@@ -9,7 +9,7 @@
 namespace LUDecomp {
 	void LUDecomp(MatDoub& A, VecDoub& b, int size) {
 		// Evaluate x
-		VecDoub x(3);
+		VecDoub x(size);
 		//Create LU decomposition object
 		LUdcmp LU(A);
 
@@ -50,6 +50,15 @@ namespace LUDecomp {
 		util::print(L * U, "L*U");
 		util::print(L * U * x, "L*U*x");
 		util::print(x, "x");
+	}
+
+	void LUDecompquick(MatDoub& A, VecDoub& b, int size) {
+		LUdcmp lu(A);
+		VecDoub ans(size);
+
+		lu.solve(b, ans);
+		std::cout << "LU Decomposition answer: " << std::endl;
+		util::print(ans);
 	}
 };
 

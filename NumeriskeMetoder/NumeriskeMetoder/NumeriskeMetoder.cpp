@@ -28,12 +28,9 @@ int main()
 //Lektion 2 opgave:
 #include <iostream>
 #include <fstream>
-#include "../../NR_C301/code/nr3.h"
-#include "../../NR_C301/code/ludcmp.h"
-# include "../../NR_C301/code/cholesky.h"
-#include "../../NR_C301/code/utilities.h"
-//Include til lektion 3 opgave
-#include "../../NR_C301/code/svd.h"
+#include "LUDecomp.h"
+#include "CholeskyDecomp.h"
+#include "SVDDecomp.h"
 
 using namespace std;
 
@@ -77,19 +74,11 @@ int main() {
 	CPont = util::Transpose(aPont) * aPont;
 	cPont = util::Transpose(aPont) * bPont;
 
-	LUdcmp lu(CPont);
-	VecDoub pontCoef(cPont.size());
+	LUDecomp::LUDecompquick(CPont, cPont, cPont.size());
 
-	lu.solve(cPont, pontCoef);
-	std::cout << "LU Decomposition answer: " << std::endl;
-	util::print(pontCoef);
 
 	//Cholesky
-	VecDoub pontCoefch(cPont.size());
-	Cholesky ch(CPont);
-	ch.solve(cPont, pontCoefch);
-	std::cout << "Cholesky Decomposition answers: " << std::endl;
-	util::print(pontCoefch);
+	CholeskyDecomp::CholeskyDecomp(CPont, cPont, cPont.size());
 
 
 	//Filip
@@ -123,49 +112,25 @@ int main() {
 	CFilip = util::Transpose(aFilip) * aFilip;
 	cFilip = util::Transpose(aFilip) * bFilip;
 
-	LUdcmp luF(CFilip);
-	VecDoub filipCoef(cFilip.size());
+	LUDecomp::LUDecompquick(CFilip, cFilip, cFilip.size());
 
-	luF.solve(cFilip, filipCoef);
-	std::cout << "LU Decomposition answer: " << std::endl;
-	util::print(filipCoef);
 
 	//Cholesky
-	
-	VecDoub filipCoefch(cFilip.size());
-	Cholesky chF(CFilip);
-	chF.solve(cFilip, filipCoefch);
-	std::cout << "Cholesky Decomposition answers: " << std::endl;
-	util::print(filipCoefch);
+	CholeskyDecomp::CholeskyDecomp(CFilip, cFilip, cFilip.size());
 	
 	//Dette deviere fra alle de andre svar af en eller anden grund
 	
 	//Lektion 3 SVD-decomposition af filip og pontius
-	SVD svdP(aPont);
-	VecDoub xxPont(3);
-	svdP.solve(bPont, xxPont, svdP.eps);
-	cout << "SVD Pontius: " << endl;
-	util::print(xxPont);
+	cout << "Pontius SVD:" << endl;
+	SVDDecomp::SVDDecomp(aPont, bPont, aPont.ncols());
 
-	SVD svdF(aFilip);
-	VecDoub xxFil(11);
-	svdF.solve(bFilip, xxFil, svdF.eps);
-	cout << "SVD Filip: " << endl;
-	util::print(xxFil);
+	cout << "Filip SVD:" << endl;
+	SVDDecomp::SVDDecomp(aFilip, bFilip, aFilip.ncols());
+	//Problemer med at få W til at indeholde noget!!!!
+	SVDDecomp::SVDSolveAlg(aFilip, bFilip, aFilip.ncols());
 
 	return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
 
 
 

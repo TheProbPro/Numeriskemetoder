@@ -23,5 +23,11 @@
     <ClInclude Include="LUDecomp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CholeskyDecomp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SVDDecomp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
