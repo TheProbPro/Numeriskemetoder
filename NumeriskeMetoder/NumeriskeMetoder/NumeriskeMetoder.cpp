@@ -178,8 +178,8 @@ int main() {
 */
 
 
-
 //Lektion 7
+/*
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <iostream>
@@ -198,7 +198,7 @@ void printOutput(MatDoub& x, double n) {
 	cout << fixed;
 	cout << setprecision(7);
 
-	cout << setw(8) << "n" << " | " << setw(12) << "L0" << " | " << setw(12) << "L" << " | " <<
+	cout << setw(12) << "n" << " | " << setw(12) << "L0" << " | " << setw(12) << "L" << " | " <<
 		setw(12) << "p" << " | " << setw(13) << "x" << " | " <<
 		setw(13) << "thetha" << " | " << setw(14) << "phi" << " | " <<
 		setw(14) << "a" << " | " << setw(12) << "H" << " | " << endl << endl;
@@ -255,52 +255,12 @@ int main() {
 
 	return 0;
 }
-
+*/
 
 
 //Lektion 8
 /*
-#include <iostream>
-#include <cmath>
-#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\nr3.h> 
-
-
-void printoutTable(VecDoub& a, VecDoub& fcalc) {
-	
-	cout << left;
-	cout << fixed;
-	cout << setprecision(7);
-
-	cout << setw(8) << "i" << " | " << setw(8) << "a[i]" << " | " <<
-		setw(8) << "a[i-1] - a[i]" << " | " << 
-		setw(8) << "Rich-alp^k" << " | " << 
-		setw(8) << "Antal f-beregninger" << endl << endl;
-	
-	for (size_t i = 0; i < a.size(); i++) {
-		if (i == 0) {
-			cout << setw(8) << i << " | " <<
-				setw(8) << a[i] << " | " << 
-				setw(8) << " *** " << " | " <<
-				setw(8) << " *** " << " | " <<
-				setw(8) << fcalc[i] << endl;
-		}
-		else if (i == 1) {
-			cout << setw(8) << i << " | " << 
-				setw(8) << a[i] << " | " <<
-				setw(8) << a[i] - a[i - 1] << "| " <<
-				setw(8) << " *** " << " | " <<
-				setw(8) << fcalc[i] << endl;
-		}
-		else {
-			cout << setw(8) << i << " | " << 
-				setw(8) << a[i] << " | " <<
-				setw(8) << a[i] - a[i - 1] << "  |  " <<
-				setw(8) << abs(a[i - 2] - a[i - 1]) / (abs(a[i - 1] - a[i])) << " | " <<
-				setw(8) << fcalc[i] << endl << endl;
-		}
-	}
-
-}
+#include "NewtonsCotes.h"
 
 double f1(double x) {
 	double ans = cos(pow(x, 2)) * exp(-x);
@@ -322,39 +282,6 @@ double f4(double x) {
 	return ans;
 }
 
-double rectangleMethod(double (*f)(double x), double N /*Nummer af inddelinger*//*, double a /*start værdi*//*, double b /*slut værdi*//*) {
-	double h = (b - a) / (N - 1); //Stepsize
-	double sum = 0;
-	for (int i = 0; i < N - 1; ++i) {
-		sum += f(a + h * i + h * 0.5);
-	}
-	double result = h * sum;
-	return result;
-}
-
-double trapezoidalMethod(double (*f)(double x), double N /*Nummer af inddelinger*//*, double a /*start værdi*//*, double b /*slut værdi*//*) {
-	double h = (b - a) / (N - 1); //Stepsize
-	double sum = 1/2*f(a)+1/2*f(b);
-	for (int i = 1; i < N - 2; ++i) {
-		sum += f(a + h * i);
-	}
-	double result = h * sum;
-	return result;
-}
-
-double simpsonsMethod(double (*f)(double x), double N /*Nummer af inddelinger*//*, double a /*start værdi*//*, double b /*slut værdi*//*) {
-	double h = (b - a) / (N - 1); //Stepsize
-	double sum = 1 / 3 * f(a) + 1 / 3 * f(b);
-	for (int i = 1; i < N - 2; i+2) {
-		sum += 4 / 3 * f(a + h * i);
-	}
-	for (int i = 2; i < N - 2; i + 2) {
-		sum += 2 / 3 * f(a + h * i);
-	}
-	double result = h * sum;
-	return result;
-}
-
 int main() {
 	VecDoub a(10);
 	VecDoub b(10);
@@ -364,20 +291,20 @@ int main() {
 	VecDoub N(10);
 	for (int i = 0; i < 10; ++i) {
 		N[i] = pow(2, i) + 1;
-		a[i] = rectangleMethod(f1, N[i], 0, 1);
-		b[i] = rectangleMethod(f2, N[i], 0, 1);
-		c[i] = rectangleMethod(f3, N[i], 0, 1);
-		d[i] = rectangleMethod(f4, N[i], 0, 1);
+		a[i] = NewtonsCotes::rectangleMethod(f1, N[i], 0, 1);
+		b[i] = NewtonsCotes::rectangleMethod(f2, N[i], 0, 1);
+		c[i] = NewtonsCotes::rectangleMethod(f3, N[i], 0, 1);
+		d[i] = NewtonsCotes::rectangleMethod(f4, N[i], 0, 1);
 	}
 	std::cout << "Rectangle Method: " << std::endl;
 	std::cout << "f1: " << std::endl;
-	printoutTable(a, N);
+	NewtonsCotes::printoutTable(a, N);
 	std::cout << "f2: " << std::endl;
-	printoutTable(b, N);
+	NewtonsCotes::printoutTable(b, N);
 	std::cout << "f3: " << std::endl;
-	printoutTable(c, N);
+	NewtonsCotes::printoutTable(c, N);
 	std::cout << "f4: " << std::endl;
-	printoutTable(d, N);
+	NewtonsCotes::printoutTable(d, N);
 	
 	std::cout << "Trapezoidal Method: " << std::endl;
 	VecDoub a1(10);
@@ -388,19 +315,19 @@ int main() {
 	VecDoub N1(10);
 	for (int i = 0; i < 10; ++i) {
 		N1[i] = pow(2, i) + 1;
-		a1[i] = trapezoidalMethod(f1, N1[i], 0, 1);
-		b1[i] = trapezoidalMethod(f2, N1[i], 0, 1);
-		c1[i] = trapezoidalMethod(f3, N1[i], 0, 1);
-		d1[i] = trapezoidalMethod(f4, N1[i], 0, 1);
+		a1[i] = NewtonsCotes::trapezoidalMethod(f1, N1[i], 0, 1);
+		b1[i] = NewtonsCotes::trapezoidalMethod(f2, N1[i], 0, 1);
+		c1[i] = NewtonsCotes::trapezoidalMethod(f3, N1[i], 0, 1);
+		d1[i] = NewtonsCotes::trapezoidalMethod(f4, N1[i], 0, 1);
 	}
 	std::cout << "f1: " << std::endl;
-	printoutTable(a1, N1);
+	NewtonsCotes::printoutTable(a1, N1);
 	std::cout << "f2: " << std::endl;
-	printoutTable(b1, N1);
+	NewtonsCotes::printoutTable(b1, N1);
 	std::cout << "f3: " << std::endl;
-	printoutTable(c1, N1);
+	NewtonsCotes::printoutTable(c1, N1);
 	std::cout << "f4: " << std::endl;
-	printoutTable(d1, N1);
+	NewtonsCotes::printoutTable(d1, N1);
 
 	std::cout << "Simpson Method: " << std::endl;
 	VecDoub a2(10);
@@ -411,20 +338,20 @@ int main() {
 	VecDoub N2(10);
 	for (int i = 0; i < 10; ++i) {
 		N2[i] = pow(2, i) + 1;
-		a2[i] = rectangleMethod(f1, N2[i], 0, 1);
-		b2[i] = rectangleMethod(f2, N2[i], 0, 1);
-		c2[i] = rectangleMethod(f3, N2[i], 0, 1);
-		d2[i] = rectangleMethod(f4, N2[i], 0, 1);
+		a2[i] = NewtonsCotes::simpsonsMethod(f1, N2[i], 0, 1);
+		b2[i] = NewtonsCotes::simpsonsMethod(f2, N2[i], 0, 1);
+		c2[i] = NewtonsCotes::simpsonsMethod(f3, N2[i], 0, 1);
+		d2[i] = NewtonsCotes::simpsonsMethod(f4, N2[i], 0, 1);
 	}
 	std::cout << "Rectangle Method: " << std::endl;
 	std::cout << "f1: " << std::endl;
-	printoutTable(a2, N2);
+	NewtonsCotes::printoutTable(a2, N2);
 	std::cout << "f2: " << std::endl;
-	printoutTable(b2, N2);
+	NewtonsCotes::printoutTable(b2, N2);
 	std::cout << "f3: " << std::endl;
-	printoutTable(c2, N2);
+	NewtonsCotes::printoutTable(c2, N2);
 	std::cout << "f4: " << std::endl;
-	printoutTable(d2, N2);
+	NewtonsCotes::printoutTable(d2, N2);
 
 	return 0;
 }
@@ -434,9 +361,9 @@ int main() {
 /*
 #include <iostream>
 #include <cmath>
-#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\nr3.h> 
-#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\quadrature.h>
-#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\derule.h>
+#include "..\..\NR_C301\code\nr3.h" 
+#include "..\..\NR_C301\code\quadrature.h"
+#include "..\..\NR_C301\code\derule.h"
 
 using namespace std;
 
@@ -474,6 +401,8 @@ double derule(T& func, const double a, const double b, const double pre)
 		N = pow(2, count);
 		Ah1 = Ah0;
 		Ah0 = rule.next();
+		std::cout << std::fixed;
+		std::cout << std::setprecision(4);
 		cout << count << " | " << Ah0 << " | " << abs(Ah0 - Ah1) << endl;
 	}
 	return Ah0;
@@ -481,22 +410,22 @@ double derule(T& func, const double a, const double b, const double pre)
 
 int main() {
 	cout << "DE rule for f1." << endl;
-	cout << "count | Ah0 | Ah0-Ah1" << endl;
+	cout << "Count  |   Ah0  | Ah0-Ah1" << endl;
 	derule(f1, 0, 1, 1e-15);
 	cout << endl << endl;
 	
 	cout << "DE rule for f2." << endl;
-	cout << "count | Ah0 | Ah0-Ah1" << endl;
+	cout << "Count  |   Ah0  | Ah0-Ah1" << endl;
 	derule(f2, 0, 1, 1e-15);
 	cout << endl << endl;
 
 	cout << "DE rule for f3." << endl;
-	cout << "count | Ah0 | Ah0-Ah1" << endl;
+	cout << "Count  |   Ah0  | Ah0-Ah1" << endl;
 	derule(f3, 0, 1, 1e-15);
 	cout << endl << endl;
 
 	cout << "DE rule for f4." << endl;
-	cout << "count | Ah0 | Ah0-Ah1" << endl;
+	cout << "Count  |   Ah0  | Ah0-Ah1" << endl;
 	derule(f4, 0, 1, 1e-15);
 	cout << endl << endl;
 	
@@ -505,13 +434,13 @@ int main() {
 */
 
 //Lektion 10
-/*
+
 int main() {
 	
 
 	return 0;
 }
-*/
+
 
 //Lektion 11
 /*
