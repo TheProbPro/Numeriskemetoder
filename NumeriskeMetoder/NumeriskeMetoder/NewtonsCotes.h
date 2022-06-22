@@ -18,12 +18,14 @@ namespace NewtonsCotes
 		std::cout << std::setw(8) << "i" << " | " << std::setw(8) << "a[i]" << " | " <<
 			std::setw(8) << "a[i-1] - a[i]" << " | " <<
 			std::setw(8) << "Rich-alp^k" << " | " <<
+			std::setw(8) << "Rich-fejl" << " | " <<
 			std::setw(8) << "Antal f-beregninger" << std::endl << std::endl;
 
 		for (size_t i = 0; i < a.size(); i++) {
 			if (i == 0) {
 				std::cout << std::setw(8) << i << " | " <<
 					std::setw(8) << a[i] << " | " <<
+					std::setw(8) << " ******* " << " | " <<
 					std::setw(8) << " ******* " << " | " <<
 					std::setw(8) << " ******* " << " | " <<
 					std::setw(8) << fcalc[i] << std::endl;
@@ -33,6 +35,7 @@ namespace NewtonsCotes
 					std::setw(8) << a[i] << " | " <<
 					std::setw(8) << a[i] - a[i - 1] << "| " <<
 					std::setw(8) << " ******* " << " | " <<
+					std::setw(8) << " ******* " << " | " <<
 					std::setw(8) << fcalc[i] << std::endl;
 			}
 			else {
@@ -40,6 +43,7 @@ namespace NewtonsCotes
 					std::setw(8) << a[i] << " | " <<
 					std::setw(8) << a[i] - a[i - 1] << "  |  " <<
 					std::setw(8) << abs(a[i - 2] - a[i - 1]) / (abs(a[i - 1] - a[i])) << " | " <<
+					std::setw(8) << abs((a[i]-a[i-1])/((abs(a[i - 2] - a[i - 1]) / (abs(a[i - 1] - a[i]))-1))) << " | " <<
 					std::setw(8) << fcalc[i] << std::endl << std::endl;
 			}
 		}
@@ -60,8 +64,8 @@ namespace NewtonsCotes
 	//Trapezoidal method
 	double trapezoidalMethod(double (*f)(double x), double N /*Nummer af inddelinger*/, double a /*start værdi*/, double b /*slut værdi*/) {
 		double h = (b - a) / (N - 1); //Stepsize
-		double sum = 1 / 2 * f(a) + 1 / 2 * f(b);
-		for (int i = 1; i < N - 2; ++i) {
+		double sum = 0.5 * f(a) + 0.5 * f(b);
+		for (int i = 1; i < N - 1; ++i) {
 			sum += f(a + h * i);
 		}
 		double result = h * sum;
@@ -71,12 +75,12 @@ namespace NewtonsCotes
 	//Simpsons method
 	double simpsonsMethod(double (*f)(double x), double N /*Nummer af inddelinger*/, double a /*start værdi*/, double b /*slut værdi*/) {
 		double h = (b - a) / (N - 1); //Stepsize
-		double sum = 1 / 3 * f(a) + 1 / 3 * f(b);
-		for (int i = 1; i < N - 2; i = i + 2) {
-			sum += 4 / 3 * f(a + h * i);
+		double sum = static_cast<double>(1) / 3 * f(a) + static_cast<double>(1) / 3 * f(b);
+		for (int i = 1; i < N - 1; i = i + 2) {
+			sum += static_cast<double>(4) / 3 * f(a + h * i);
 		}
-		for (int i = 2; i < N - 2; i = i + 2) {
-			sum += 2 / 3 * f(a + h * i);
+		for (int i = 2; i < N - 1; i = i + 2) {
+			sum += static_cast<double>(2) / 3 * f(a + h * i);
 		}
 		double result = h * sum;
 		return result;

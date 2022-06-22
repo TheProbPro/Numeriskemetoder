@@ -257,9 +257,8 @@ int main() {
 }
 */
 
-
-//Lektion 8
 /*
+//Lektion 8
 #include "NewtonsCotes.h"
 
 double f1(double x) {
@@ -287,7 +286,10 @@ int main() {
 	VecDoub b(10);
 	VecDoub c(10);
 	VecDoub d(10);
-
+	a.assign(10, 0);
+	b.assign(10, 0);
+	c.assign(10, 0);
+	d.assign(10, 0);
 	VecDoub N(10);
 	for (int i = 0; i < 10; ++i) {
 		N[i] = pow(2, i) + 1;
@@ -311,6 +313,10 @@ int main() {
 	VecDoub b1(10);
 	VecDoub c1(10);
 	VecDoub d1(10);
+	a1.assign(10, 0);
+	b1.assign(10, 0);
+	c1.assign(10, 0);
+	d1.assign(10, 0);
 
 	VecDoub N1(10);
 	for (int i = 0; i < 10; ++i) {
@@ -334,7 +340,10 @@ int main() {
 	VecDoub b2(10);
 	VecDoub c2(10);
 	VecDoub d2(10);
-
+	a2.assign(10, 0);
+	b2.assign(10, 0);
+	c2.assign(10, 0);
+	d2.assign(10, 0);
 	VecDoub N2(10);
 	for (int i = 0; i < 10; ++i) {
 		N2[i] = pow(2, i) + 1;
@@ -343,7 +352,6 @@ int main() {
 		c2[i] = NewtonsCotes::simpsonsMethod(f3, N2[i], 0, 1);
 		d2[i] = NewtonsCotes::simpsonsMethod(f4, N2[i], 0, 1);
 	}
-	std::cout << "Rectangle Method: " << std::endl;
 	std::cout << "f1: " << std::endl;
 	NewtonsCotes::printoutTable(a2, N2);
 	std::cout << "f2: " << std::endl;
