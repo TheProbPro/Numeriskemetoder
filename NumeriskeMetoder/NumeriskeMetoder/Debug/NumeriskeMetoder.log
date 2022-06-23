@@ -1,3 +1,4 @@
 ﻿  NumeriskeMetoder.cpp
-C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumeriskeMetoder\NumeriskeMetoder\NewtonsCotes.h(24,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumeriskeMetoder\NumeriskeMetoder\NumericalSolutions.h(25,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumeriskeMetoder\NumeriskeMetoder\NumeriskeMetoder.cpp(518,32): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   NumeriskeMetoder.vcxproj -> C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumeriskeMetoder\Debug\NumeriskeMetoder.exe
