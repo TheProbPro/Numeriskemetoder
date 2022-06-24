@@ -560,6 +560,7 @@ int main() {
 #include <iostream>
 #include <cmath>
 #include "../../NR_C301/code/nr3.h"
+#include "../../NR_C301/code/tridag.h"
 #include "../../NR_C301/code/utilities.h"
 
 double F(double yp, double y, double x) {
@@ -574,37 +575,29 @@ double Fyp(double yp, double y, double x) {
 	return cos(yp);
 }
 
-std::vector<VecDoub> tridagDiagonals(double N, double h, int a, int b, VecDoub& yi, VecDoub& xi) {
-	//Initializer the different vectors for tridag
-	VecDoub tA(N-1);
-	VecDoub tB(N-1);
-	VecDoub tC(N-1);
+MatDoub tridagDiagonals(int N, double h, int a, int b, VecDoub& yi, VecDoub& xi, MatDoub& J) {
+	//Set first and last elements
+	J[0][0] = 2 + pow(h, 2) * Fy(((yi[2] - a) / (2 * h)), yi[1], xi[1]);
+	J[0][1] = -1 + (h / 2) * Fyp(((yi[2] - a) / (2 * h)), yi[1], xi[1]);
+	J[N-1][N-1] = 2 + pow(h, 2) * Fy(((b - yi[N - 2]) / (2 * h)), yi[N - 1], xi[N - 1]);
+	J[N-1][N-2] = -1 - (h / 2) * Fyp(((b - yi[N - 2]) / (2 * h)), yi[N - 1], xi[N - 1]);
 
-	tA[0] = 0;
-	tB[0] = 2 + pow(h, 2) * Fy(((yi[2] - a) / (2 * h)), yi[1], xi[1]);
-	tC[0] = -1 + (h / 2) * Fyp(((yi[2] - a) / (2 * h)), yi[1], xi[1]);
-	tA[N - 1] = -1 - (h / 2) * Fyp(((b - yi[N - 2]) / (2 * h)), yi[N - 1], xi[N - 1]);
-	tB[N - 1] = 2 + pow(h, 2) * Fy(((b - yi[N - 2]) / (2 * h)), yi[N - 1], xi[N - 1]);
-
-	for (int i = 1; i < N - 2; ++i) {
-		tA[i] = -1 - (h / 2) * Fyp(((yi[i + 1] - yi[i - 1]) / (2 * h)), yi[i], xi[i]);
-		tB[i] = 2 + pow(h, 2) * Fy(((yi[i + 1] - yi[i - 1]) / (2 * h)), yi[i], xi[i]);
-		tC[i] = -1 - (h / 2) * Fyp(((yi[i + 1] - yi[i - 1]) / (2 * h)), yi[i], xi[i]);
+	//Update Diagonls between start and end values
+	for (int i = 1; i < N - 1; ++i) {
+		J[i][i - 1] = -1 - (h / 2) * Fyp(((yi[i + 1] - yi[i - 1]) / (2 * h)), yi[i], xi[i]);
+		J[i][i] = 2 + pow(h, 2) * Fy(((yi[i + 1] - yi[i - 1]) / (2 * h)), yi[i], xi[i]);
+		J[i][i + 1] = -1 - (h / 2) * Fyp(((yi[i + 1] - yi[i - 1]) / (2 * h)), yi[i], xi[i]);
 	}
-
-	//Creates output vector
-	std::vector<VecDoub> finished(3);
-	finished.push_back(tA);
-	finished.push_back(tB);
-	finished.push_back(tC);
-	return finished;
+	util::print(J);
+	return J;
 }
 
 int main() {
-	int a = 0;	//Lower bound
-	int b = 2;	//Upper bound
-	double N = 3;	//Steps
-	double h = (b - a) / (N - 1); //stepsize
+	double a = 0;	//Lower bound
+	double b = 2;	//Upper bound
+	double N = 5;	//Steps
+	double h = (double(b) - double(a)) / (double(N) - 1); //stepsize
+
 	//Intansiere initial guess til en lige linje mellem de to punkter
 	VecDoub yi(N);
 	VecDoub xi(N);
@@ -612,15 +605,35 @@ int main() {
 	xi[0] = a;
 	for (int i = 1; i < N; ++i) {
 		yi[i] = yi[i-1] + h;
-	}
-	for (int i = 1; i < N; ++i) {
 		xi[i] = a + i * h;
 	}
+	util::print(yi);
+	util::print(xi);
 
-	std::vector<VecDoub> test(3);
-	test = tridagDiagonals(N, h, a, b, yi, xi);
-	util::print(test[1]);
+	//std::vector<VecDoub> test(3);
+	MatDoub test(N,N);
+	for (int i = 0; i < N; ++i) {
+		for (int j = 0; j < N; ++j) {
+			test[i][j] = 0;
+		}
+	}
+	test = tridagDiagonals(N, h, a, b, yi, xi, test);
+	VecDoub tA(N), tB(N), tC(N);
+	for (int i = 0; i < N-1; ++i) {
+		for (int j = 0; j < N-2; ++j) {
+			tB[i] = test[i][i];
+			tA[i+1] = test[i+1][i];
+			tC[i] = test[i][i+1];
+		}
+	}
+	tA[0] = 0;
+	tB[N-1] = test[int(N-1)][int(N-1)];
+	tC[N - 1] = 0;
+	util::print(tC);
+	util::print(tB);
+	util::print(tA);
 
+	tridag(tA, tB, tC, )
 
 	return 0;
 }
