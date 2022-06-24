@@ -442,43 +442,8 @@ int main() {
 */
 
 //Lektion 10
+/*
 #include "NumericalSolutions.h"
-
-double Leap_Frog(double x0, double y0, int a, int b, int hinv)
-{
-	double x = x0;
-	double y = y0;
-
-	double t = a;
-	double stepsize = (double(b) - double(a)) / double(hinv);
-
-	double xminus1 = x - stepsize * (x * y);		// Using Euler
-	double yminus1 = y - stepsize * (-pow(x, 2));	// Using Euler
-
-	//std::cout << "Leap_Frog method, with stepsize " << stepsize << std::endl;
-	//std::cout << "x(0) = " << x << std::endl;
-	//std::cout << "y(0) = " << y << std::endl;
-	//std::cout << "x^2 + y^2 = " << pow(x,2)+pow(y,2) << std::endl;
-	//std::cout << std::endl;
-
-	for (double i = a; i < b; i = i + stepsize)
-	{
-		double xplus1 = xminus1 + 2 * stepsize * (x * y);
-		double yplus1 = yminus1 + 2 * stepsize * (-pow(x, 2));
-		xminus1 = x;
-		yminus1 = y;
-		x = xplus1;
-		y = yplus1;
-		t = t + stepsize;
-		//	std::cout << "x(" << t << ") = " << x << std::endl;
-		//	std::cout << "y(" << t << ") = " << y << std::endl;
-		//	std::cout << "x^2 + y^2 = " << pow(x,2)+pow(y,2) << std::endl;
-		//	std::cout << std::endl;
-
-	}
-	return(x);
-
-}
 
 VecDoub f(double X0, double Y0) {
 	VecDoub f(2);
@@ -487,10 +452,18 @@ VecDoub f(double X0, double Y0) {
 	return f;
 }
 
+void dydx(const Doub x, VecDoub_I& y, VecDoub_O& dydx)
+{
+	dydx[0] = y[0] * y[1];
+	dydx[1] = -(y[0] * y[0]);
+}
+
 int main() {
 	VecDoub eul(10);
 	VecDoub LF(10);
 	VecDoub Mp(10);
+	VecDoub Trap(10);
+	VecDoub Rk_4(10);
 	VecDoub h(10);
 	for (int i = 0; i < eul.size(); ++i) {
 		h[i] = 5 * pow(2, i);
@@ -500,71 +473,94 @@ int main() {
 	NumericalSolutions::printoutTable(eul, h);
 
 	std::cout << "Leap Frog method: " << std::endl;
-	NumericalSolutions::LeapFrog(f, 1, 1, 0, 5, h, LF);
+	NumericalSolutions::LeapFrog(f, 1, 1, 0, 10, h, LF);
 	NumericalSolutions::printoutTable(LF, h);
 
 	std::cout << "Midpoint method: " << std::endl;
 	NumericalSolutions::Midpoint(f, 1, 1, 0, 5, h, Mp);
 	NumericalSolutions::printoutTable(Mp, h);
 
+	std::cout << "Trapezoidal method: " << std::endl;
+	NumericalSolutions::Trapezoidal(f, 1, 1, 0, 5, h, Trap);
+	NumericalSolutions::printoutTable(Trap, h);
 
-
-	Doub s, olds = 0.0, oldolds = 0.0, rn = 0.0, r = 0.0, oldr = 0.0, oldoldr = 0.0;
-	cout << setw(15) << "hinv" << setw(15) << "Sn" << setw(15) << "k1" << setw(15) << "Rn" << setw(15) << "k2" << setw(15) << "R2n" << endl;
-	for (int j = 0; j < 15; j++) {
-
-
-		//s = Euler(1,1,0,5,5*pow(2,j));  // 1(1) and 2(3)
-		s = Leap_Frog(1, 1, 0, 10, 5 * pow(2, j));//1(1) and 2(3)
-
-		//s =Midpoint(1,1,0,5,5*pow(2,j)); // 2(3) and 3(8)
-
-		//s=Trapezoidal(1,1,0,5,5*pow(2,j));// 2(3) and 3(8)
-
-		//s = CalcRK4(1,1,0,5,5*pow(2,j)); //4(15) and 5(24)
-
-		cout << setw(15) << 5 * pow(2, j);
-		cout << setw(15) << s;
-		if (oldolds != 0.0) { cout << setw(15) << log2(abs((oldolds - olds) / (olds - s))); }
-		else { cout << setw(15) << " "; }
-		if (olds != 0.0) { r = s + (s - olds) / 1.0; cout << setw(15) << r; } // We see that k1 tends towards 2,and with alpha=2 we get alpha^k-1 = 3
-		else { cout << setw(15) << " "; }
-		if (oldoldr != 0.0) { cout << setw(15) << log2(abs((oldoldr - oldr) / (oldr - r))); }
-		else { cout << setw(15) << " "; }
-		if (oldr != 0.0) { rn = r + (r - oldr) / 3.0; cout << setw(15) << rn; } // We see that k2 tends towards 4,and with alpha=2 we get alpha^k-1 = 15
-		else { cout << setw(15) << " "; }
-		cout << endl;
-
-
-		oldoldr = oldr;
-		oldolds = olds;
-		oldr = r;
-		olds = s;
-
-
-	}
+	std::cout << "Runge Kutta 4.order:" << std::endl;
+	NumericalSolutions::RungeKutta(f, dydx, 1, 1, 0, 5, h, Rk_4);
+	NumericalSolutions::printoutTable(Rk_4, h);
 
 	return 0;
 }
-
+*/
 
 //Lektion 11
 /*
+#include "NumericalSolutions.h"
+
+VecDoub Midpoint(VecDoub(*f)(double X0, double Y0, double x), double X0, double Y0, int a, int b, VecDoub h, VecDoub& ans) {
+	// Declaration of variables
+	VecDoub Fxy0(2), Fxy1(2), FxyNew(2), FxyHalf(2), xy(2);
+	double stepsize = 0;
+
+	for (int i = 0; i < ans.size(); ++i) {
+		// Set x and y start values and stepsize for each h value
+		xy[0] = X0;
+		xy[1] = Y0;
+		stepsize = (double(b) - double(a)) / double(h[i]);
+
+		for (double j = a; j < b; j = j + stepsize) {
+			// Calculate the function for each iteration of x and y values
+			Fxy0 = f(xy[0], xy[1], j);
+			FxyHalf[0] = xy[0] + 0.5 * stepsize * Fxy0[0];
+			FxyHalf[1] = xy[1] + 0.5 * stepsize * Fxy0[1];
+			Fxy1 = f(FxyHalf[0], FxyHalf[1], j);
+			FxyNew[0] = xy[0] + stepsize * Fxy1[0];
+			FxyNew[1] = xy[1] + stepsize * Fxy1[1];
+			// Setting the new x and y values
+			xy[0] = FxyNew[0];
+			xy[1] = FxyNew[1];
+		}
+		// Saving the x values to the answer vector
+		ans[i] = xy[0];
+	}
+	return ans;
+}
+
+VecDoub f(double X0, double Y0, double x) {
+	VecDoub f(2);
+	f[0] = cos(-1 + x + X0 + 3 * Y0);
+	f[1] = (-pow(X0, 2)) + 2 * sin(Y0);
+	return f;
+}
 
 int main() {
+	VecDoub Mp(10);
+	VecDoub h(10);
+	for (int i = 0; i < Mp.size(); ++i) {
+		h[i] = 5 * pow(2, i);
+	}
+	std::cout << "Midpoint method: " << std::endl;
+	Midpoint(f, 1, 0, 0, 5, h, Mp);
+	NumericalSolutions::printoutTable(Mp, h);
 
+	VecDoub Mp2(15);
+	VecDoub h2(15);
+	for (int i = 0; i < Mp2.size(); ++i) {
+		h2[i] = 5 * pow(2, i);
+	}
+	std::cout << "Midpoint method: " << std::endl;
+	Midpoint(f, 1, 0, 0, 1, h, Mp2);
+	NumericalSolutions::printoutTable(Mp2, h2, pow(10, -6));
 
 	return 0;
 }
 */
 
 //Lektion 12
-/*
+
 #include <iostream>
 #include <cmath>
-#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\nr3.h> 
-#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\utilities.h>
-#include <C:\Users\nvigg\Desktop\4.semester Boeger\4. Semester\NR_C301\code\utilities.h>
+#include "../../NR_C301/code/nr3.h"
+#include "../../NR_C301/code/utilities.h"
 
 double F(double yp, double y, double x) {
 	return 2 * x + sin(yp) - cos(y);
@@ -627,5 +623,5 @@ int main() {
 
 
 	return 0;
-}*/
+}
 
