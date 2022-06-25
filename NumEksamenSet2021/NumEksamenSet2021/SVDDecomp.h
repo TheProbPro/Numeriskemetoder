@@ -73,17 +73,13 @@ namespace SVDDecomp
 
 		//Opgave 3 (state a vector ||y||=1 and y*(Ax) = 0 with ||x|| =1
 		//----------------------Gav op!-----------------------------------------------
-		/*
+		
 		std::cout << "y= " << std::endl;
 		VecDoub y(10); y.assign(y.size(), 0);
-		VecDoub temp(10); temp.assign(temp.size(), 0);
-		for (int i = 0; i < U.ncols()-1; ++i) {
-			for (int j = 0; j < U.nrows(); ++j) {
-				y[j] += W_inv[i][i] * U[j][i];
-			}
+		for (int i = 0; i < y.size(); ++i) {
+			y[i] = U[i][5];
 		}
-		*/
-		
+		util::print(y);
 	}
 };
 
