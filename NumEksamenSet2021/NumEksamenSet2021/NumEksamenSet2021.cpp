@@ -4,16 +4,13 @@
 #include "SVDDecomp.h"
 // Include for exercise 2
 #include "ConvergenceMethods.h"
-//#include "../../NR_C301/code/ludcmp.h"
-//#include "../../NR_C301/code/qrdcmp.h"
-//#include "../../NR_C301/code/roots_multidim.h"
-
 
 //Includes for exercise 5a
 #include "NewtonsCotes.h"
 
 //For exercise 2
-double t = 0;
+//Doub t = 0;
+Doub t;
 
 VecDoub equations(VecDoub guess) {
     double at = 1.1 * (1 + pow(t, 2));
@@ -48,7 +45,18 @@ void printEx2(VecDoub& x) {
 }
 
 //2) iii
+Doub func(Doub tx) {
+    t = tx;
+    bool convergence;
 
+    //Initialize guess
+    VecDoub guess(4); guess.assign(guess.size(), 0);
+
+    //Uses the newt function
+    newt(guess, convergence, equations);
+
+    return sqrt(pow(guess[0], 2) + pow(guess[1], 2) + pow(guess[2], 2)) - 1;
+}
 
 //Exercise 5a
 double f(double x) {
@@ -57,7 +65,7 @@ double f(double x) {
 
 int main()
 {
-    //----------------------------Exercise 1--------------------------------------
+    //----------------------------------------Exercise 1-------------------------------------------------
     // Load files for the SVD
     int m, n;
     MatDoub A(10, 6);
@@ -91,9 +99,9 @@ int main()
 
     // SVD: Find diagonal elements and solve the SVD for Ax = b
     SVDDecomp::SVDSolveAlg(A, b, A.ncols());
-    //-------------------Mangler at løse 1.3!!!--------------------------
 
-    //--------------------------------Exercise 2----------------------------------
+
+    //---------------------------------------Exercise 2---------------------------------------------
     std::cout << "\n Exercise 2: " << std::endl;
 
     //Initialize zero guess for newt method
@@ -114,7 +122,7 @@ int main()
 
     //Initialize zero guess for second newt method
     //Guess: guess[0] = x, guess[1] = y, guess[2] = z, guess[3] = lambda
-    VecDoub guess2(4); guess2.assign(guess.size(), 0);
+    VecDoub guess2(4); guess2.assign(guess2.size(), 0);
     double d2 = 0;
 
     //Newt from numerical methods includes
@@ -128,8 +136,26 @@ int main()
     d2 = sqrt(pow(guess2[0], 2) + pow(guess2[1], 2) + pow(guess2[2], 2));
     std::cout << "\nDistance to origin computed to: " << d2 << std::endl << std::endl;
 
-    //--------------------------------Mangler exercise 2.3-----------------------------------------
+    //Exercise 2.3
+    ConvergenceMethods::Ridders(func, 6, 1.2, 1.4);
+    //std::cout << "t = " << zriddr(func, 1.2, 1.4, 1e-6) << std::endl;
+    //Test of answer
+    t = 1.3729040;
 
+    //Guess: guess[0] = x, guess[1] = y, guess[2] = z, guess[3] = lambda
+    VecDoub guess3(4); guess3.assign(guess3.size(), 0);
+    double d3 = 0;
+
+    //Newt from numerical methods includes
+    newt(guess3, convergence, equations);
+    std::cout << "Solution for ridders t: " << std::endl;
+    printEx2(guess3);
+    std::cout << std::endl << std::endl;
+
+    //---------------------------------------Exercise 3---------------------------------------------
+
+
+    //---------------------------------------Exercise 4---------------------------------------------
 
 
     //------------------------------------------Exercise 5a----------------------------------------------

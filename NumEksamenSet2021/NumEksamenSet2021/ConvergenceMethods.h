@@ -8,6 +8,7 @@
 #include "../../NR_C301/code/ludcmp.h"
 #include "../../NR_C301/code/qrdcmp.h"
 #include "../../NR_C301/code/roots_multidim.h"
+#include "../../NR_C301/code/roots.h"
 #include "..\..\NR_C301\code\utilities.h"
 #include <vector>
 
