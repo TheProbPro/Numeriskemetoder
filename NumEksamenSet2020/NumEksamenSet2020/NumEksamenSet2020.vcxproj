@@ -142,6 +142,8 @@
     <ClCompile Include="NumEksamenSet2020.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConvergenceMethods.h" />
+    <ClInclude Include="NewtonsCotes.h" />
     <ClInclude Include="SVDDecomp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

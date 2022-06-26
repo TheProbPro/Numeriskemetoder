@@ -23,5 +23,11 @@
     <ClInclude Include="SVDDecomp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ConvergenceMethods.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NewtonsCotes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -220,7 +220,6 @@ namespace NumericalSolutions
 	}
 
 	// 4. order Runge Kutta method
-	
 	VecDoub RungeKutta(VecDoub(*f)(double X0, double Y0), void(*dydx)(const Doub x, VecDoub_I& y, VecDoub_O& dydx), double X0, double Y0, int a, int b, VecDoub h, VecDoub& ans) {
 		// Set x and y start values and stepsize for each h value
 		VecDoub xy(2), dydx1(2), xyOld(2);

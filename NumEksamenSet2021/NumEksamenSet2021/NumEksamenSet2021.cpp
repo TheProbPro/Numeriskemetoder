@@ -4,6 +4,8 @@
 #include "SVDDecomp.h"
 // Include for exercise 2
 #include "ConvergenceMethods.h"
+// Include for exercise 3
+#include "NumericalSolutions.h"
 
 //Includes for exercise 5a
 #include "NewtonsCotes.h"
@@ -56,6 +58,19 @@ Doub func(Doub tx) {
     newt(guess, convergence, equations);
 
     return sqrt(pow(guess[0], 2) + pow(guess[1], 2) + pow(guess[2], 2)) - 1;
+}
+
+//---------------------------------------Exercise 3---------------------------------------------
+VecDoub f(double x0, double x1, double x2, double x3) {
+    VecDoub f(4);
+    double w = 0.00012;
+    double G = 0.153;
+    double K = 0.0003;
+    f[0] = x1;
+    f[1] = w * x3 - G * x0 - K * x1 * sqrt(pow(x1, 2) + pow(x3, 2));
+    f[2] = x3;
+    f[3] = -w * x1 - G * x2 - K * x3 * sqrt(pow(x1, 2) + pow(x3, 2));
+    return f;
 }
 
 //Exercise 5a
@@ -153,8 +168,14 @@ int main()
     std::cout << std::endl << std::endl;
 
     //---------------------------------------Exercise 3---------------------------------------------
-
-
+    /*
+    VecDoub x(10), h(10);
+    for (int i = 0; i < h.size(); ++i) {
+        h[i] = 5 * pow(2, i);
+    }
+    NumericalSolutions::Midpoint(f, , 3600, 3600, 3600, 0, 1, h, x);
+    NumericalSolutions::printoutTable(x, h);
+    */
     //---------------------------------------Exercise 4---------------------------------------------
 
 

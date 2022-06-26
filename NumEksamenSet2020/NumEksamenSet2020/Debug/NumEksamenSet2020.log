@@ -1,4 +1,5 @@
 ﻿  NumEksamenSet2020.cpp
 C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NR_C301\code\utilities.h(47,14): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NR_C301\code\utilities.h(47,12): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamenSet2020\NumEksamenSet2020\NewtonsCotes.h(24,24): warning C4018: '<': signed/unsigned mismatch
   NumEksamenSet2020.vcxproj -> C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamenSet2020\Debug\NumEksamenSet2020.exe
