@@ -172,6 +172,7 @@ namespace NumericalSolutions
 			xy[3] = x3;
 
 			stepsize = (double(b) - double(a)) / double(h[i]);
+			std::cout << stepsize << std::endl;
 
 			for (double j = a; j < b; j = j + stepsize) {
 				// Calculate the function for each iteration of x and y values
