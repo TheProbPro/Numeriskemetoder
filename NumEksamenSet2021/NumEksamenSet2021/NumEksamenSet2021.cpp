@@ -61,7 +61,7 @@ Doub func(Doub tx) {
 }
 
 //---------------------------------------Exercise 3---------------------------------------------
-VecDoub f(double x0, double x1, double x2, double x3) {
+VecDoub fex3(double x0, double x1, double x2, double x3) {
     VecDoub f(4);
     double w = 0.00012;
     double G = 0.153;
@@ -73,7 +73,7 @@ VecDoub f(double x0, double x1, double x2, double x3) {
     return f;
 }
 
-//Exercise 5a
+//--------------------------------------Exercise 5a----------------------------------------------
 double f(double x) {
     return cos(pow(x, 3)) * exp(-x);
 }
@@ -168,14 +168,13 @@ int main()
     std::cout << std::endl << std::endl;
 
     //---------------------------------------Exercise 3---------------------------------------------
-    /*
-    VecDoub x(10), h(10);
+     VecDoub x(10), h(10);
     for (int i = 0; i < h.size(); ++i) {
         h[i] = 5 * pow(2, i);
     }
-    NumericalSolutions::Midpoint(f, , 3600, 3600, 3600, 0, 1, h, x);
+    NumericalSolutions::Midpoint(fex3, 0, 0, 5, 0, 0, 1, h, x);
     NumericalSolutions::printoutTable(x, h);
-    */
+    
     //---------------------------------------Exercise 4---------------------------------------------
 
 

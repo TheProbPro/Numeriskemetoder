@@ -610,7 +610,6 @@ int main() {
 	util::print(yi);
 	util::print(xi);
 
-	//std::vector<VecDoub> test(3);
 	MatDoub test(N,N);
 	for (int i = 0; i < N; ++i) {
 		for (int j = 0; j < N; ++j) {
@@ -637,5 +636,3 @@ int main() {
 
 	return 0;
 }
-
-
