@@ -4,7 +4,9 @@
 #include <fstream>
 #include "CholeskyDecomp.h"
 // Include for exercise 2
-
+#include "../../NR_C301/code/ludcmp.h"
+#include "../../NR_C301/code/qrdcmp.h"
+#include "../../NR_C301/code/roots_multidim.h"
 // Include for exercise 3
 #include "NumericalSolutions.h"
 // Include for exercise 4
@@ -13,6 +15,107 @@
 #include "NewtonCotes.h"
 
 //Ekstra methods for the exercises
+//Exercise 2
+int iterationsEx2 = 0;
+
+VecDoub rA(double uA) {
+    double a1 = 1.1;
+    double a2 = 2.1;
+    double a3 = 0.8;
+
+    VecDoub ans(3, 0.0);
+    ans[0] = a1 * pow(cos(1 + uA), 3);
+    ans[1] = a2 * pow(uA, 2);
+    ans[2] = a3 * uA * sin(uA);
+    return ans;
+}
+
+VecDoub rB(double uB) {
+    double b1 = 0.4;
+    double b2 = 1.3;
+    double b3 = 0.5;
+
+    VecDoub ans(3, 0.0);
+    ans[0] = b1 * (uB + exp(-pow(uB, 2)));
+    ans[1] = b2 * pow(uB, 3);
+    ans[2] = b3 * cos(uB);
+    return ans;
+}
+
+VecDoub rpA(double uA) {
+    VecDoub rA1(3, 0.0), rA2(3, 0.0), ans(3, 0.0);
+    rA1 = rA(uA + 1e-8);
+    rA2 = rA(uA);
+    for (int i = 0; i < ans.size(); ++i) {
+        ans[i] = (rA1[i] - rA2[i])/ 1e-8;
+    }
+    return ans;
+}
+
+VecDoub rpB(double uB) {
+    VecDoub rB1(3, 0.0), rB2(3, 0.0), ans(3, 0.0);
+    rB1 = rB(uB + 1e-8);
+    rB2 = rB(uB);
+    for (int i = 0; i < ans.size(); ++i) {
+        ans[i] = (rB1[i] - rB2[i])/ 1e-8;
+    }
+    return ans;
+}
+
+double f0(double uA, double uB) {
+    VecDoub rpA1 = rpA(uA);
+    VecDoub rA1 = rA(uA);
+    VecDoub rB1 = rB(uB);
+    VecDoub rA_B(3, 0.0);
+    double ans = 0;
+    for (int i = 0; i < rA_B.size(); ++i) {
+        rA_B[i] = rA1[i] - rB1[i];
+        ans += rpA1[i] * rA_B[i];
+    }
+    return ans;
+}
+
+double f1(double uA, double uB) {
+    VecDoub rpB1 = rpB(uB);
+    VecDoub rA1 = rA(uA);
+    VecDoub rB1 = rB(uB);
+    VecDoub rA_B(3, 0.0);
+    double ans = 0;
+    for (int i = 0; i < rA_B.size(); ++i) {
+        rA_B[i] = rB1[i] - rA1[i];
+        ans += rpB1[i] * rA_B[i];
+    }
+    return ans;
+}
+
+VecDoub equationsEx2(VecDoub guess) {
+    VecDoub ans(2, 0.0);
+    ans[0] = f0(guess[0], guess[1]);
+    ans[1] = f1(guess[0], guess[1]);
+    iterationsEx2 += 1;
+    return ans;
+}
+
+void printEx2i() {
+    std::cout << fixed;
+    std::cout << setprecision(6);
+    double f01 = f0(1, -1);
+    double f11 = f1(1, -1);
+    std::cout << "f0 is: " << f01 << std::endl;
+    std::cout << "f1 is: " << f11 << std::endl;
+}
+
+double distanceEx2(VecDoub guess) {
+    VecDoub rA1 = rA(guess[0]);
+    VecDoub rB1 = rB(guess[1]);
+    VecDoub rA_B1(3, 0.0);
+    double ans = 0;
+    for (int i = 0; i < rA1.size(); ++i) {
+        rA_B1[i] = rA1[i] - rB1[i];
+        ans += pow(rA_B1[i], 2);
+    }
+    return sqrt(ans);
+}
 
 //Exercise 3
 double f1ex3(double x) {
@@ -138,7 +241,26 @@ int main()
     std::cout << std::endl << std::endl;
 
     //------------------------------------------------Exercise 2------------------------------------------------
+    std::cout << "Exercise 2" << std::endl;
+    printEx2i();
+    
+    std::cout << "Exercise 2 ii)" << std::endl;
+    VecDoub guessEx2(2, 0.0);
+    guessEx2[0] = 1;
+    guessEx2[1] = -1;
+    bool convergence = false;
 
+    newt(guessEx2, convergence, equationsEx2);
+    std::cout << "Did newt find roots?: " << !convergence << std::endl;
+    std::cout << "Roots found by newt:" << std::endl;
+    util::print(guessEx2);
+    std::cout << "Distance: " << distanceEx2(guessEx2) << std::endl;
+    std::cout << "f0 = " << f0(guessEx2[0], guessEx2[1]) << std::endl;
+    std::cout << "f1  = " << f1(guessEx2[0], guessEx2[1]) << std::endl;
+    
+    std::cout << "Newt ran " << iterationsEx2 << " iterations" << std::endl;
+
+    std::cout << std::endl << std::endl;
 
     //------------------------------------------------Exercise 3------------------------------------------------
     std::cout << "Exercise 3" << std::endl;
