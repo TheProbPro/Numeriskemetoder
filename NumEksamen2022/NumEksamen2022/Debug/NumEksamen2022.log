@@ -1,0 +1,7 @@
+﻿  NumEksamen2022.cpp
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NR_C301\code\utilities.h(47,14): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NR_C301\code\utilities.h(47,12): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamen2022\NumEksamen2022\NumericalSolutions.h(30,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamen2022\NumEksamen2022\NumericalSolutions.h(72,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamen2022\NumEksamen2022\NewtonCotes.h(31,24): warning C4018: '<': signed/unsigned mismatch
+  NumEksamen2022.vcxproj -> C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamen2022\Debug\NumEksamen2022.exe

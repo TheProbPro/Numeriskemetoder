@@ -137,7 +137,7 @@ int main() {
 
 
 //Lektion 5 + Lektion 6
-
+/*
 #include "ConvergenceMethods.h"
 
 using namespace std;
@@ -175,7 +175,7 @@ int main() {
 
 	return 0;
 }
-
+*/
 
 
 //Lektion 7
@@ -257,7 +257,7 @@ int main() {
 }
 */
 
-/*
+
 //Lektion 8
 #include "NewtonsCotes.h"
 
@@ -363,7 +363,7 @@ int main() {
 
 	return 0;
 }
-*/
+
 
 //Lektion 9       -----------Ved ikke lige om jeg fik lavet richardson Extrapolation ------------------------
 /*
