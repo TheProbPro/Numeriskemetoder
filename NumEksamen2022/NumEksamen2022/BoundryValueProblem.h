@@ -34,7 +34,7 @@ namespace BoundryValueProblem
 		}
 	};
 
-	void solve(double (*F)(Doub x, Doub y, Doub yp), double (*Fy)(Doub x, Doub y, Doub yp), double (*Fyp)(Doub x, Doub y, Doub yp), Doub a, Doub b, Doub aa, Doub bb) {
+	void solve(double (*F)(Doub x, Doub y, Doub yp), double (*Fy)(Doub x, Doub y, Doub yp), double (*Fyp)(Doub x, Doub y, Doub yp), Doub a, Doub b, Doub aa, Doub bb, double eps) {
 		int N = 1;
 		int kk, kkmax = 10;
 		Doub h = (b - a) / N;
@@ -43,6 +43,13 @@ namespace BoundryValueProblem
 		for (int i = 0; i < N + 1; i++) { y[i] = yinit(i); } //Startguess for Y, first run
 		Doub s, olds = 0.0, oldolds = 0.0, rn = 0.0, r = 0.0, oldr = 0.0, oldoldr = 0.0;
 		VecDoub yhalf(kkmax, 0.0);
+		std::cout << setw(14) << "count" << "|" << 
+			setw(14) << "s" << "|" <<
+			setw(14) << "s rich^k" <<  "|" << 
+			setw(14) << "r" << "|" <<
+			setw(14) << "r rich^k" << "|" << 
+			setw(14) << "rn" << "|" << 
+			setw(14) << "N" << std::endl;
 		// Richardson Loop Starts Here
 		for (kk = 0; kk < kkmax; kk++)
 		{
@@ -87,6 +94,8 @@ namespace BoundryValueProblem
 				tridag(Jm, J, Jp, Fm, dy); //Find dy
 				for (int i = 0; i < N + 1; i++) { y[i] = y[i] + dy[i]; } // Update y
 			}
+
+			
 			//Richardson Calculations
 			yhalf[kk] = y[N / 2];
 			s = y[N / 2];
@@ -100,18 +109,18 @@ namespace BoundryValueProblem
 			else { cout << setw(15) << " "; }
 			if (abs(oldr) > 0.0) { rn = r + (r - oldr) / 15; cout << setw(15) << rn; } // We see that k2 tends towards 4,and with alpha=2 we get alpha^k-1 = 15
 			else { cout << setw(15) << " "; }
-			cout << endl;
+			cout << setw(15) << N << std::endl;
 			Doub alphak = abs((oldolds - olds) / (olds - s));
 
 			if (kk > 3)
-				if (abs(s - olds) / alphak < 0.0001) // Terminate at a predetermined error estimate
+				if (abs(s - olds) / alphak < eps) // Terminate at a predetermined error estimate
 					break;
 
 			oldoldr = oldr;
 			oldolds = olds;
 			oldr = r;
 			olds = s;
-
+			
 		}
 		VecDoub yprint(kk, 0.0);
 		for (int i = 0; i < kk; i++)
