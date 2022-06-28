@@ -4,9 +4,10 @@
 #include <fstream>
 #include "CholeskyDecomp.h"
 // Include for exercise 2
-#include "../../NR_C301/code/ludcmp.h"
-#include "../../NR_C301/code/qrdcmp.h"
-#include "../../NR_C301/code/roots_multidim.h"
+//#include "../../NR_C301/code/ludcmp.h"
+//#include "../../NR_C301/code/qrdcmp.h"
+//#include "../../NR_C301/code/roots_multidim.h"
+#include "newtonsMethod.h"
 // Include for exercise 3
 #include "NumericalSolutions.h"
 // Include for exercise 4
@@ -16,7 +17,6 @@
 
 //Ekstra methods for the exercises
 //Exercise 2
-int iterationsEx2 = 0;
 
 VecDoub rA(double uA) {
     double a1 = 1.1;
@@ -92,7 +92,6 @@ VecDoub equationsEx2(VecDoub guess) {
     VecDoub ans(2, 0.0);
     ans[0] = f0(guess[0], guess[1]);
     ans[1] = f1(guess[0], guess[1]);
-    iterationsEx2 += 1;
     return ans;
 }
 
@@ -245,20 +244,27 @@ int main()
     printEx2i();
     
     std::cout << "Exercise 2 ii)" << std::endl;
-    VecDoub guessEx2(2, 0.0);
+    VecDoub guessEx2(2, 0.0), guessEx21(2, 0.0);
     guessEx2[0] = 1;
     guessEx2[1] = -1;
+    guessEx21 = guessEx2;
     bool convergence = false;
 
-    newt(guessEx2, convergence, equationsEx2);
+    newtonsMethod::newt(guessEx2, convergence, equationsEx2, 10);
     std::cout << "Did newt find roots?: " << !convergence << std::endl;
     std::cout << "Roots found by newt:" << std::endl;
     util::print(guessEx2);
     std::cout << "Distance: " << distanceEx2(guessEx2) << std::endl;
     std::cout << "f0 = " << f0(guessEx2[0], guessEx2[1]) << std::endl;
     std::cout << "f1  = " << f1(guessEx2[0], guessEx2[1]) << std::endl;
-    
-    std::cout << "Newt ran " << iterationsEx2 << " iterations" << std::endl;
+
+    newtonsMethod::newt(guessEx21, convergence, equationsEx2, 20, 1e-4);
+    std::cout << "Did newt find roots?: " << !convergence << std::endl;
+    std::cout << "Roots found by newt at accuracy 1e-4:" << std::endl;
+    util::print(guessEx21);
+    std::cout << "Distance: " << distanceEx2(guessEx21) << std::endl;
+    std::cout << "f0 = " << f0(guessEx21[0], guessEx21[1]) << std::endl;
+    std::cout << "f1  = " << f1(guessEx21[0], guessEx21[1]) << std::endl;
 
     std::cout << std::endl << std::endl;
 

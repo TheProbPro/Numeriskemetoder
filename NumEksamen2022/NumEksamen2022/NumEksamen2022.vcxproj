@@ -145,6 +145,7 @@
     <ClInclude Include="BoundryValueProblem.h" />
     <ClInclude Include="CholeskyDecomp.h" />
     <ClInclude Include="NewtonCotes.h" />
+    <ClInclude Include="newtonsMethod.h" />
     <ClInclude Include="NumericalSolutions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -4,4 +4,18 @@ C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NR_C301\code\utilities.h(47,12)
 C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamen2022\NumEksamen2022\NumericalSolutions.h(30,24): warning C4018: '<': signed/unsigned mismatch
 C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamen2022\NumEksamen2022\NumericalSolutions.h(72,24): warning C4018: '<': signed/unsigned mismatch
 C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamen2022\NumEksamen2022\NewtonCotes.h(31,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamen2022\NumEksamen2022\newtonsMethod.h(11,22): warning C4244: 'initializing': conversion from 'double' to 'Int', possible loss of data
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamen2022\NumEksamen2022\NumEksamen2022.cpp(253): message : see reference to function template instantiation 'void newtonsMethod::newt<VecDoub(VecDoub)>(VecDoub_IO &,Bool &,T (__cdecl &),double)' being compiled
+          with
+          [
+              T=VecDoub (VecDoub)
+          ]
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamen2022\NumEksamen2022\newtonsMethod.h(11,20): warning C4244: 'initializing': conversion from 'double' to 'const Int', possible loss of data
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamen2022\NumEksamen2022\newtonsMethod.h(75,22): warning C4244: 'initializing': conversion from 'double' to 'Int', possible loss of data
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamen2022\NumEksamen2022\NumEksamen2022.cpp(261): message : see reference to function template instantiation 'void newtonsMethod::newt<VecDoub(VecDoub)>(VecDoub_IO &,Bool &,T (__cdecl &),double,double)' being compiled
+          with
+          [
+              T=VecDoub (VecDoub)
+          ]
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamen2022\NumEksamen2022\newtonsMethod.h(75,20): warning C4244: 'initializing': conversion from 'double' to 'const Int', possible loss of data
   NumEksamen2022.vcxproj -> C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamen2022\Debug\NumEksamen2022.exe
