@@ -6,7 +6,8 @@
 #include "ConvergenceMethods.h"
 // Include for exercise 3
 #include "NumericalSolutions.h"
-
+// Includes for exercise 4
+#include "BoundryValueProblem.h"
 //Includes for exercise 5a
 #include "NewtonsCotes.h"
 
@@ -71,6 +72,23 @@ VecDoub fex3(double x0, double x1, double x2, double x3) {
     f[2] = x3;
     f[3] = -w * x1 - G * x2 - K * x3 * sqrt(pow(x1, 2) + pow(x3, 2));
     return f;
+}
+
+//--------------------------------------Exercise 4-----------------------------------------------
+double F(Doub x, Doub y, Doub yp)
+{
+    return (4 * (y + x * yp) * (1 - pow(yp, 2))) / (1 + 4 * pow(x, 2) + 4 * pow(y, 2));
+    //return 2 * x - cos(y) + sin(yp);
+}
+double Fy(Doub x, Doub y, Doub yp)
+{
+    return (4 * (pow(yp, 2) - 1) * (4 * pow(y, 2) + 8 * x * y * yp - 4 * pow(x, 2) - 1)) / pow((4 * pow(y, 2) + 4 * pow(x, 2) + 1), 2);
+    //return sin(y);
+}
+double Fyp(Doub x, Doub y, Doub yp)
+{
+    return -((12 * x * pow(yp, 2) + 8 * y * yp - 4 * x) / (4 * pow(y, 2) + 4 * pow(x, 2) + 1));
+    //return cos(yp);
 }
 
 //--------------------------------------Exercise 5a----------------------------------------------
@@ -168,15 +186,19 @@ int main()
     std::cout << std::endl << std::endl;
 
     //---------------------------------------Exercise 3---------------------------------------------
-     VecDoub x(10), h(10);
+    std::cout << "Exercise 3" << std::endl;
+    VecDoub x(10, 0.0), h(10, 0.0);
     for (int i = 0; i < h.size(); ++i) {
-        h[i] = 5 * pow(2, i);
+        h[i] = pow(2, i);
     }
-    NumericalSolutions::Midpoint(fex3, 0, 0, 5, 0, 0, 1, h, x);
+    NumericalSolutions::Midpoint(fex3, 0, 0, 5, 0, 0, 3600, h, x);
     NumericalSolutions::printoutTable(x, h);
-    
-    //---------------------------------------Exercise 4---------------------------------------------
+    std::cout << std::endl << std::endl;
 
+    //---------------------------------------Exercise 4---------------------------------------------
+    std::cout << "Exercise 4" << std::endl;
+    BoundryValueProblem::solve(F, Fy, Fyp, -0.9, 0.8, -0.85, -0.9);
+    std::cout << std::endl << std::endl;
 
     //------------------------------------------Exercise 5a----------------------------------------------
     //Creates vectors with plenty of space for iterations:

@@ -1,2 +1,4 @@
 ﻿  NumeriskeMetoder.cpp
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NR_C301\code\utilities.h(47,14): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NR_C301\code\utilities.h(47,12): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   NumeriskeMetoder.vcxproj -> C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumeriskeMetoder\Debug\NumeriskeMetoder.exe

@@ -40,13 +40,17 @@ namespace ConvergenceMethods
 	}
 
 	//Newtons method
-	void Newton(double (*f)(double x), double (*df)(double x), int iterations) {
-		std::vector<double> x;
+	//HAR LAVET OM PÅ DENNE METODE OG DET VIRKER IKKE SOM TILTÆNKT!!!!!
+	void Newton(double (*f)(double x, double y), double (*df)(double x, double y), int iterations) {
+		std::vector<double> x, y;
 		x.push_back(0);
+		y.push_back(0);
 		for (int i = 0; i < iterations; ++i) {
-			x.push_back(x[i] - f(x[i]) / df(x[i]));
+			x.push_back(x[i] - f(x[i], y[i]) / df(x[i], y[i]));
+			y.push_back(y[i] - f(x[i], y[i]) / df(x[i], y[i]));
 		}
 		printOutput(x, 2);
+		printOutput(y, 2);
 
 		cout << "Estimated error: " << abs(x[iterations] - x[iterations - 1]) / (pow(abs(x[iterations - 1] - x[iterations - 2]), 2)) * pow(x[iterations] - x[iterations - 1], 2) << endl << endl;
 	}

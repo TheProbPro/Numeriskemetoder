@@ -8,6 +8,10 @@
 #include "NewtonsCotes.h"
 #include "..\..\NR_C301\code\quadrature.h"
 #include "..\..\NR_C301\code\derule.h"
+// For exercise 4
+
+// For exercise 5a
+#include "BoundryValueProblem.h"
 
 
  //--------------------------------------- Exercise 2 --------------------------------------------
@@ -23,6 +27,26 @@ VecDoub equations(VecDoub guess) {
     ans[0] = a1 * cos(q1 + guess[0]) + a2 * cos(q2 + guess[1]) - x1;
     ans[1] = a1 * sin(q1 + guess[0]) + a2 * sin(q2 + guess[1]) - x2;
     return ans;
+}
+
+double fex2(double x, double y) {
+    double a1 = 3.157578;
+    double a2 = 0.574858;
+    double q1 = 0.875492;
+    double q2 = 0.936386;
+    double x1 = 2.34174;
+    double x2 = 2.90639;
+    return a1* cos(q1 + x) + a2 * cos(q2 + y) - x1;
+}
+
+double dfex2(double x, double y) {
+    double a1 = 3.157578;
+    double a2 = 0.574858;
+    double q1 = 0.875492;
+    double q2 = 0.936386;
+    double x1 = 2.34174;
+    double x2 = 2.90639;
+    return a1 * sin(q1 + x) + a2 * sin(q2 + y) - x2;
 }
 
 //--------------------------------------- Exercise 3 --------------------------------------------
@@ -64,6 +88,20 @@ void printDE() {
     std::cout << setw(8) << "Count" << " | " << setw(8) << "Ah0" << " | " << setw(8) << "Ah0 - Ah1" << std::endl;
     derule(f2, 0, 1, 1e-5);
     std::cout << std::endl << std::endl;
+}
+
+//--------------------------------------- Exercise 5a --------------------------------------------
+double F(Doub x, Doub y, Doub yp)
+{
+    return x + pow(y, 3) + cos(3 * yp);
+}
+double Fy(Doub x, Doub y, Doub yp)
+{
+    return 3 * pow(y, 2);
+}
+double Fyp(Doub x, Doub y, Doub yp)
+{
+    return -3 * sin(3 * yp);
 }
 
 int main()
@@ -109,11 +147,18 @@ int main()
     util::print(guess1);
 
     std::cout << "Tjek if the equations converge to zero: " << std::endl;
+
     VecDoub ans1 = equations(guess1);
     util::print(ans1);
     
+    //std::cout << std::endl << std::endl;
+    //std::cout << "Test!!! " << std::endl;
+    //ConvergenceMethods::Newton(fex2, dfex2, 10);
+
+
     //How to do convergence constant (second order convergence).
     //How to rewrithe newt to do iterations with system like this? so that we can get number of iterations
+    //Look at lecture 6 i believe
 
     //--------------------------------------- Exercise 3 --------------------------------------------
     //i)
@@ -197,7 +242,8 @@ int main()
 
 
     //--------------------------------------- Exercise 5a --------------------------------------------
-
+    std::cout << "Exercise 5a" << std::endl;
+    BoundryValueProblem::solve(F, Fy, Fyp, 0, 1, 0, 1);
 
     return 0;
 }

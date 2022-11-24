@@ -1,7 +1,7 @@
 ﻿  NumEksamenSet2021.cpp
-C:\Users\nvigg\Desktop\Github\Numeriskemetoder\NR_C301\code\utilities.h(47,14): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\nvigg\Desktop\Github\Numeriskemetoder\NR_C301\code\utilities.h(47,12): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\nvigg\Desktop\Github\Numeriskemetoder\NumEksamenSet2021\NumEksamenSet2021\NumericalSolutions.h(25,24): warning C4018: '<': signed/unsigned mismatch
-C:\Users\nvigg\Desktop\Github\Numeriskemetoder\NumEksamenSet2021\NumEksamenSet2021\NumericalSolutions.h(67,24): warning C4018: '<': signed/unsigned mismatch
-C:\Users\nvigg\Desktop\Github\Numeriskemetoder\NumEksamenSet2021\NumEksamenSet2021\NewtonsCotes.h(24,24): warning C4018: '<': signed/unsigned mismatch
-  NumEksamenSet2021.vcxproj -> C:\Users\nvigg\Desktop\Github\Numeriskemetoder\NumEksamenSet2021\Debug\NumEksamenSet2021.exe
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NR_C301\code\utilities.h(47,14): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NR_C301\code\utilities.h(47,12): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamenSet2021\NumEksamenSet2021\NumericalSolutions.h(25,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamenSet2021\NumEksamenSet2021\NumericalSolutions.h(67,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamenSet2021\NumEksamenSet2021\NewtonsCotes.h(24,24): warning C4018: '<': signed/unsigned mismatch
+  NumEksamenSet2021.vcxproj -> C:\Users\nvigg\Documents\GitHub\Numeriskemetoder\NumEksamenSet2021\Debug\NumEksamenSet2021.exe

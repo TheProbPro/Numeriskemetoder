@@ -257,7 +257,7 @@ int main() {
 }
 */
 
-/*
+
 //Lektion 8
 #include "NewtonsCotes.h"
 
@@ -363,7 +363,7 @@ int main() {
 
 	return 0;
 }
-*/
+
 
 //Lektion 9       -----------Ved ikke lige om jeg fik lavet richardson Extrapolation ------------------------
 /*
@@ -556,13 +556,36 @@ int main() {
 */
 
 //Lektion 12
-
+/*
 #include <iostream>
 #include <cmath>
-#include "../../NR_C301/code/nr3.h"
-#include "../../NR_C301/code/tridag.h"
-#include "../../NR_C301/code/utilities.h"
+//#include "../../NR_C301/code/nr3.h"
+//#include "../../NR_C301/code/tridag.h"
+//#include "../../NR_C301/code/utilities.h"
+#include "BoundryValueProblem.h"
+*/
+//Ved ikke om er nødvændig
+/*
+struct xi {
+	Doub a, h;
+	xi(Doub aa, Doub hh) :a(aa), h(hh) {}
+	Doub operator() (Doub i)
+	{
+		return a + i * h;
+	}
+};
 
+struct yi {
+	Doub a, b, N;
+	yi(Doub aa, Doub bb, Doub NN) :a(aa), b(bb), N(NN) {}
+	Doub operator() (Doub i)
+	{
+		return a + i / N * (b - a);
+	}
+};
+
+
+// Laver Funktionerne
 double F(double yp, double y, double x) {
 	return 2 * x + sin(yp) - cos(y);
 }
@@ -575,6 +598,7 @@ double Fyp(double yp, double y, double x) {
 	return cos(yp);
 }
 
+//Laver en matrix indeholdene kun diagonal elementerne
 MatDoub tridagDiagonals(int N, double h, int a, int b, VecDoub& yi, VecDoub& xi, MatDoub& J) {
 	//Set first and last elements
 	J[0][0] = 2 + pow(h, 2) * Fy(((yi[2] - a) / (2 * h)), yi[1], xi[1]);
@@ -601,6 +625,10 @@ int main() {
 	//Intansiere initial guess til en lige linje mellem de to punkter
 	VecDoub yi(N);
 	VecDoub xi(N);
+	VecDoub dy(N, 0.0);
+	VecDoub Fi(N, 0.0);
+	VecDoub Fm(N, 0.0);
+
 	yi[0] = a;
 	xi[0] = a;
 	for (int i = 1; i < N; ++i) {
@@ -636,3 +664,29 @@ int main() {
 
 	return 0;
 }
+*/
+/*
+double F(Doub x, Doub y, Doub yp)
+{
+	return (4 * (y + x * yp) * (1 - pow(yp, 2))) / (1 + 4 * pow(x, 2) + 4 * pow(y, 2));
+	//return 2 * x - cos(y) + sin(yp);
+}
+double Fy(Doub x, Doub y, Doub yp)
+{
+	return (4 * (pow(yp, 2) - 1) * (4 * pow(y, 2) + 8 * x * y * yp - 4 * pow(x, 2) - 1)) / pow((4 * pow(y, 2) + 4 * pow(x, 2) + 1), 2);
+	//return sin(y);
+}
+double Fyp(Doub x, Doub y, Doub yp)
+{
+	return -((12 * x * pow(yp, 2) + 8 * y * yp - 4 * x) / (4 * pow(y, 2) + 4 * pow(x, 2) + 1));
+	//return cos(yp);
+}
+
+
+
+using namespace std;
+
+int main() {
+	BoundryValueProblem::solve(F, Fy, Fyp, -0.9, 0.8, -0.85, -0.9);
+}
+*/
